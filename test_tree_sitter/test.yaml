@@ -1,0 +1,10 @@
+top:
+    - main
+funcList:
+    - calculateAverage
+    - findMax
+loopList: {}
+dictOp: {}
+interList: []
+arrList:
+    - main numbers

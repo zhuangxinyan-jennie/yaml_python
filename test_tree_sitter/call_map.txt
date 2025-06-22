@@ -1,0 +1,27 @@
+main()
+└── process_file()
+    ├── parse_header_macros()
+    │   └── parse_file() [internal recursive]
+    ├── get_parser()
+    ├── detect_top_function_via_call_graph()
+    │   ├── extract_identifier_from_declarator() [internal]
+    │   └── traverse() [internal recursive]
+    ├── generate_call_graph_image() [conditional]
+    ├── find_main_function() [internal]
+    ├── extract_loops()
+    │   └── traverse() [internal recursive]
+    ├── extract_function_calls()
+    │   └── traverse() [internal recursive]
+    ├── collect_variable_declarations()
+    │   ├── extract_declarator() [internal]
+    │   └── traverse() [internal recursive]
+    ├── collect_assignments()
+    │   ├── collect_loops() [internal recursive]
+    │   ├── get_rhs_operation() [helper]
+    │   └── traverse() [internal recursive]
+    └── generate_config_yaml()
+        ├── extract_struct_fields()
+        │   └── traverse() [internal recursive]
+        ├── collect_loop_groups() [internal]
+        │   └── collect_labels() [internal recursive]
+        └── generate_dict_op()

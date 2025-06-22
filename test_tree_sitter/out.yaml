@@ -1,0 +1,44 @@
+top:
+    - aes256_encrypt_ecb
+funcList:
+    - aes_addRoundKey
+    - aes_addRoundKey_cpy
+    - aes_expandEncKey
+    - aes_mixColumns
+    - aes_shiftRows
+    - aes_subBytes
+loopList:
+    group1:
+        level: &id001
+            - aes256_encrypt_ecb/ecb1
+        unroll: *id001
+        pipeline:
+            - aes256_encrypt_ecb/ecb1
+        flatten: []
+    group2:
+        level: &id002
+            - aes256_encrypt_ecb/ecb2
+        unroll: *id002
+        pipeline:
+            - aes256_encrypt_ecb/ecb2
+        flatten: []
+    group3:
+        level: &id003
+            - aes256_encrypt_ecb/ecb3
+        unroll: *id003
+        pipeline:
+            - aes256_encrypt_ecb/ecb3
+        flatten: []
+dictOp:
+    int:
+    -   aes256_encrypt_ecb/ecb1 i:
+        - add
+    -   aes256_encrypt_ecb/ecb2 i:
+        - sub
+    -   aes256_encrypt_ecb/ecb3 i:
+        - add
+interList:
+    - aes256_encrypt_ecb *ctx
+    - aes256_encrypt_ecb k[32]
+    - aes256_encrypt_ecb buf[16]
+arrList: []

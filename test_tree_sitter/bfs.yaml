@@ -1,0 +1,30 @@
+top:
+    - bfs
+funcList: []
+loopList:
+    group1:
+        level: &id001
+            - bfs/loop_horizons
+            - bfs/loop_nodes
+            - bfs/loop_neighbors
+        unroll: *id001
+        pipeline:
+            - bfs/loop_neighbors
+        flatten: []
+dictOp:
+    int:
+    -   bfs/loop_horizons horizon:
+        - add
+    -   bfs/loop_nodes n:
+        - add
+    -   bfs/loop_neighbors e:
+        - add
+    -   bfs/loop_neighbors cnt:
+        - add
+interList:
+    - bfs nodes[N_NODES]
+    - bfs edges[N_EDGES]
+    - bfs starting_node
+    - bfs level[N_NODES]
+    - bfs level_counts[N_LEVELS]
+arrList: []

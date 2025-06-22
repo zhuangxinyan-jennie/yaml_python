@@ -1,0 +1,28 @@
+top:
+    - fft
+funcList: []
+loopList:
+    group1:
+        level: &id001
+            - fft/outer
+            - fft/inner
+        unroll: *id001
+        pipeline:
+            - fft/inner
+        flatten: []
+dictOp:
+    int:
+    -   fft/outer log:
+        - add
+    -   fft/inner odd:
+        - add
+    double:
+    -   fft/inner temp:
+        - dadd
+        - dsub
+interList:
+    - fft real[FFT_SIZE]
+    - fft img[FFT_SIZE]
+    - fft real_twid[FFT_SIZE/2]
+    - fft img_twid[FFT_SIZE/2]
+arrList: []
